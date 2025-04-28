@@ -90,4 +90,3 @@ O script utilizado encontra-se no arquivo `script.py`.
 - Documentação da biblioteca [rsa](https://stuvel.eu/python-rsa-doc/)
 - Documentação da biblioteca [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/)
 - StackOverflow para resolução de dúvidas específicas
-```
