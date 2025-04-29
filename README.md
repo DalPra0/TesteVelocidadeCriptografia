@@ -77,23 +77,27 @@ O texto criptografado foi:
 
 Execução 1:
 
-<img width="468" alt="image" src="https://github.com/user-attachments/assets/1d3be443-659a-4e5a-9e93-ad93e6fcd643" />
+<img width="auto" alt="image" src="https://github.com/user-attachments/assets/1d3be443-659a-4e5a-9e93-ad93e6fcd643" />
 
 
 Execução 2:
 
-<img width="468" alt="image" src="https://github.com/user-attachments/assets/2a07d8aa-b323-4a6c-8e75-f23d94770ebf" />
+<img width="auto" alt="image" src="https://github.com/user-attachments/assets/2a07d8aa-b323-4a6c-8e75-f23d94770ebf" />
 
 
 Execução 3:
 
-<img width="468" alt="image" src="https://github.com/user-attachments/assets/4bf825f8-26f1-4581-aeab-4356d0a0b448" />
+<img width="auto" alt="image" src="https://github.com/user-attachments/assets/4bf825f8-26f1-4581-aeab-4356d0a0b448" />
 
 
 Execução 4:
 
 ![image](https://github.com/user-attachments/assets/d130efbb-56f7-4136-ba03-7d673246ed21)
 
+
+Execução 5:
+
+![image](https://github.com/user-attachments/assets/13e3a2cc-8d81-4ade-923d-8088bf457795)
 
 ---
 
