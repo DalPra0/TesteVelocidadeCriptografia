@@ -46,14 +46,14 @@ O texto criptografado foi:
 
 ## ⚙️ Configuração da Máquina de Testes
 
-| Item                 | Especificação |
-|----------------------|---------------|
-| Sistema Operacional  | -             |
-| Processador (CPU)    | -             |
-| Frequência do CPU    | -             |
-| Memória RAM          | -             |
-| Armazenamento (HD/SSD)| -            |
-
+| Item                 | Especificação                          |
+|----------------------|----------------------------------------|
+| Sistema Operacional  | macOS Sonoma (provável 14.x, confirme no menu Apple > Sobre este Mac) |
+| Processador (CPU)    | Apple M4 Pro                           |
+| Frequência do CPU    | ~3.5 GHz (estimado, Apple Silicon não publica exato, mas é referência comum) |
+| Núcleos da CPU       | 12 núcleos (8 de performance + 4 de eficiência, típico do M4 Pro) |
+| Memória RAM          | 24 GB unificada                        |
+| Armazenamento (SSD)  | 512 GB                                 |
 ---
 
 ## 📊 Resultados
@@ -75,7 +75,9 @@ O texto criptografado foi:
 
 ## 📸 Prints de Execução
 
-(Screenshots das execuções individuais serão adicionados aqui.)
+Execução 1:
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/1d3be443-659a-4e5a-9e93-ad93e6fcd643" />
+
 
 ---
 
