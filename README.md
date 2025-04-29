@@ -60,9 +60,9 @@ O texto criptografado foi:
 
 | Algoritmo          | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Média |
 |--------------------|------------|------------|------------|------------|------------|-------|
-| RSA-1024 (Geração)  | -          | -          | -          | -          | -          | -     |
-| RSA-1024 (Criptografia) | -      | -          | -          | -          | -          | -     |
-| RSA-2048 (Geração)  | -          | -          | -          | -          | -          | -     |
+| RSA-1024 (Geração)  | 0.0194 segundos          | -          | -          | -          | -          | -     |
+| RSA-1024 (Criptografia) | 0.0000 segundos      | -          | -          | -          | -          | -     |
+| RSA-2048 (Geração)  | 2.7070 segundos          | -          | -          | -          | -          | -     |
 | RSA-2048 (Criptografia) | -      | -          | -          | -          | -          | -     |
 | RSA-4096 (Geração)  | -          | -          | -          | -          | -          | -     |
 | RSA-4096 (Criptografia) | -      | -          | -          | -          | -          | -     |
@@ -79,13 +79,21 @@ Execução 1:
 
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/1d3be443-659a-4e5a-9e93-ad93e6fcd643" />
 
+
 Execução 2:
 
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/2a07d8aa-b323-4a6c-8e75-f23d94770ebf" />
 
+
 Execução 3:
 
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/4bf825f8-26f1-4581-aeab-4356d0a0b448" />
+
+
+Execução 4:
+
+![image](https://github.com/user-attachments/assets/d130efbb-56f7-4136-ba03-7d673246ed21)
+
 
 ---
 
@@ -93,65 +101,99 @@ Execução 3:
 
 O script utilizado encontra-se no arquivo `script.py`.
 
+### 📌 Importações
+
 ```python
 import time
 import rsa
 import base64
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-
-
-texto = "RSA: algoritmo dos professores do MIT: Rivest, Shamir e Adleman".encode('utf-8')
-
-
-def rsa_encrypt_test(bits):
-    print(f"\n===== RSA {bits} bits =====")
-
-    start_keygen = time.time()
-    (public_key, private_key) = rsa.newkeys(bits)
-    end_keygen = time.time()
-
-    keygen_time = end_keygen - start_keygen
-    print(f"Tempo para gerar chaves RSA-{bits}: {keygen_time:.4f} segundos")
-
-    start_encrypt = time.time()
-    encrypted_text = rsa.encrypt(texto, public_key)
-    end_encrypt = time.time()
-
-    encrypt_time = end_encrypt - start_encrypt
-    print(f"Tempo para criptografar RSA-{bits}: {encrypt_time:.4f} segundos")
-
-
-def aes_encrypt_test(bits):
-    print(f"\n===== AES {bits} bits =====")
-
-    key = get_random_bytes(bits // 8)
-    cipher = AES.new(key, AES.MODE_EAX)
-
-    start_encrypt = time.time()
-    nonce = cipher.nonce
-    ciphertext, tag = cipher.encrypt_and_digest(texto)
-    end_encrypt = time.time()
-
-    encrypt_time = end_encrypt - start_encrypt
-    print(f"Tempo para criptografar AES-{bits}: {encrypt_time:.4f} segundos")
-
-
-if __name__ == "__main__":
-    print("Início do teste de desempenho criptográfico")
-
-    # RSA
-    rsa_encrypt_test(1024)
-    rsa_encrypt_test(2048)
-    rsa_encrypt_test(4096)
-    rsa_encrypt_test(8192)
-
-    # AES
-    aes_encrypt_test(128)
-    aes_encrypt_test(256)
-
-    print("\nTeste concluído!")
 ```
+- `time`: para medir os tempos de execução das operações.
+- `rsa`: biblioteca usada para gerar chaves e cifrar com RSA.
+- `base64`: usada para codificações, embora não tenha sido utilizada no código final.
+- `Cryptodome.Cipher.AES`: biblioteca para criptografia simétrica (AES).
+- `get_random_bytes`: usada para gerar chaves aleatórias para o AES.
+
+---
+
+### 📌 Texto base para os testes
+
+```python
+texto = "RSA: algoritmo dos professores do MIT: Rivest, Shamir e Adleman".encode('utf-8')
+```
+- Define o texto que será criptografado por todos os algoritmos.
+- O `.encode('utf-8')` transforma a string em bytes, pois os algoritmos exigem esse formato.
+
+---
+
+### 🔐 Função RSA: `rsa_encrypt_test(bits)`
+
+```python
+(public_key, private_key) = rsa.newkeys(bits)
+```
+- Gera um par de chaves (pública e privada) com o número de bits fornecido (ex: 1024, 2048...).
+
+```python
+encrypted_text = rsa.encrypt(texto, public_key)
+```
+- Criptografa o texto com a chave pública RSA gerada.
+
+```python
+time.time()
+```
+- Mede o tempo antes e depois da operação para calcular a duração da geração da chave e da criptografia.
+
+---
+
+### 🔐 Função AES: `aes_encrypt_test(bits)`
+
+```python
+key = get_random_bytes(bits // 8)
+```
+- Gera uma chave AES aleatória (ex: 128 ou 256 bits), convertendo para bytes (dividido por 8).
+
+```python
+cipher = AES.new(key, AES.MODE_EAX)
+```
+- Cria um objeto de cifra no modo `EAX` (modo autenticado e seguro).
+
+```python
+ciphertext, tag = cipher.encrypt_and_digest(texto)
+```
+- Criptografa o texto e gera uma `tag` de verificação de integridade.
+
+---
+
+### ▶️ Execução principal
+
+```python
+if __name__ == "__main__":
+```
+- Ponto de entrada do script quando ele é executado diretamente.
+
+```python
+rsa_encrypt_test(1024)
+rsa_encrypt_test(2048)
+rsa_encrypt_test(4096)
+rsa_encrypt_test(8192)
+```
+- Executa os testes com criptografia RSA em quatro tamanhos de chave.
+
+```python
+aes_encrypt_test(128)
+aes_encrypt_test(256)
+```
+- Executa os testes com criptografia AES com chaves de 128 e 256 bits.
+
+---
+
+### ✅ Resultado
+
+- O script imprime no console o tempo gasto para gerar chaves RSA e criptografar com RSA e AES.
+- Os dados devem ser registrados manualmente em prints e planilhas.
+
 
 ---
 
