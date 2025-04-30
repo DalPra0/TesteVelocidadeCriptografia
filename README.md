@@ -48,7 +48,7 @@ O texto criptografado foi:
 
 | Item                 | Especificação                          |
 |----------------------|----------------------------------------|
-| Sistema Operacional  | macOS Sonoma (provável 14.x, confirme no menu Apple > Sobre este Mac) |
+| Sistema Operacional  | macOS Sonoma 14.x |
 | Processador (CPU)    | Apple M4 Pro                           |
 | Frequência do CPU    | ~3.5 GHz (estimado, Apple Silicon não publica exato, mas é referência comum) |
 | Núcleos da CPU       | 12 núcleos (8 de performance + 4 de eficiência, típico do M4 Pro) |
